@@ -146,6 +146,17 @@
 <script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
 <script src="scrollama.min.js"></script>
 
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+<!-- <script>
+    if ($(".step").hasClass("is-active") && $(".step").attr("data-step") == 2) {
+        console.log("Step 2")
+    }
+</script> -->
+
 <script>
     // using d3 for convenience
     var main = d3.select("main");
@@ -176,7 +187,28 @@
 
     // scrollama event handlers
     function handleStepEnter(response) {
-        console.log(response);
+        // console.log(response);
+        
+        if (response.index == 1) {
+            $("img.non-us").css({
+                "filter": "saturate(0)",
+                "transition": "0.25s",
+                "opacity": 0.75
+            })
+        } else if (response.index == 2) {
+            $("img.non-ny").css({
+                "filter": "saturate(0)",
+                "transition": "0.25s",
+                "opacity": 0.75
+            })
+        } else {
+            $("img").css({
+                "filter": "saturate(1)",
+                "transition": "0.25s",
+                "opacity": 1
+            })
+        }
+
         // response = { element, direction, index }
 
         // add color to current step only
@@ -186,7 +218,7 @@
 
         // update graphic based on step
         // figure.select("p").text(response.index + 1);
-        figure.select("div").filter = "saturate(0)"
+        // figure.select("div").filter = "saturate(0)"
     }
     
     function init() {
